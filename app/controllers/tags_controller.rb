@@ -2,6 +2,10 @@ class TagsController < ApplicationController
 
   def index
     @tags = Tag.all
+    @recipes = Recipe.all
+    @ingredients = Ingredient.all
+    @recipe = Recipe.create
+    @ingredients = Ingredient.create
     render :index
   end
 

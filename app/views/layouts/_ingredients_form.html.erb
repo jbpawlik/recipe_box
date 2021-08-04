@@ -1,4 +1,4 @@
-<h1>Add a new ingredient:</h1>
+<%= render "layouts/errors", :object => @ingredient %>
 
 <%= form_for [@ingredient] do |f| %>
   <%= f.label :name %>

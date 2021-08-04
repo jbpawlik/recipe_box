@@ -1,14 +1,24 @@
-<h1>Recipes</h1>
 
-<% if @recipes.any? %>
-  <ul>
-    <% @recipes.each do |recipe| %>
-      <li><%= link_to recipe.name, recipe_path(recipe) %></li>
+<div class="row">
+  <div class="col-md-3 sidebar">
+    <div>
+      <strong>Search Recipes by Tag:</strong> 
+    </div>
+    <div>
+      <strong>Search Recipes by Ingredient:</strong>
+    </div>
+  </div>
+  <div class="col">
+    <h1>Recipes</h1>
+    <% if @recipes.any? %>
+      <ul>
+        <% @recipes.each do |recipe| %>
+          <li><%= link_to recipe.name, recipe_path(recipe) %></li>
+        <% end %>
+      </ul>
+    <% else %>
+      <p>There are no recipes yet.</p>
     <% end %>
-  </ul>
-<% else %>
-  <p>There are no recipes yet.</p>
-<% end %>
-
-
-<p><%= link_to "Create new recipe", new_recipe_path %></p>
+    <p><%= link_to "Create new recipe", new_recipe_path, class: "btn btn-primary" %></p>
+  </div>
+</div>

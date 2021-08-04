@@ -6,12 +6,13 @@ class RecipesController < ApplicationController
   end
 
   def new
-    @recipe = Recipe.new
+    @recipe = Recipe.create
+    @ingredient = Ingredient.create
     render :new
   end
 
   def create
-    @recipe = Recipe.new(recipe_params)
+    @recipe = Recipe.create(recipe_params)
     if @recipe.save
       flash[:notice] = "Recipe successfully added!"
       redirect_to recipes_path
@@ -27,6 +28,7 @@ class RecipesController < ApplicationController
 
   def show
     @recipe = Recipe.find(params[:id])
+    @ingredients = @recipe.ingredients
     render :show
   end
 

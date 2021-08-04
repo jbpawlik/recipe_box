@@ -5,8 +5,7 @@ Rails.application.routes.draw do
     resources :tags
   end
 
-  resources :recipes do
-    resources :ingredients
-  end
+  resources :ingredients
 
+  resources :tags
 end

@@ -1,10 +1,41 @@
 <h1>Recipe: <%= @recipe.name %></h1>
-
-<h3><%= @recipe.instructions %></h3>
-<h3>Rating: <%= @recipe.rating %> Stars</h3>
-
-
-<p><%= link_to "Edit Recipe", edit_recipe_path(@recipe) %></p>
-<p><%= link_to "Delete Recipe", recipe_path(@recipe),:data => {:confirm => "Are you sure?", :method => "delete"} %></p>
-
-<p><%= link_to "Return to recipe", recipe_path(@recipe) %></p>
+<h3>Rating: 
+<span style="color:#FFE356">
+  <% @recipe.rating.to_i.times do %>
+      ★
+    <%end%>
+  </span>
+  <span style="color:#E1FAFD">
+    <%(5-@recipe.rating.to_i).times do %>
+      ★
+    <%end%>
+</span>
+  </h3>
+<div class="row">
+  <div class="col-md-4">
+    <h3>Ingredients</h3>
+    <% if @recipe.ingredients.any? %>
+      <ul>
+        <% @recipe.ingredients.each do |ingredient| %>
+          <li><%= link_to ingredient.name, ingredient_path(ingredient) %></li>
+        <% end %>
+      </ul>
+    <% else %>
+      <p>There are no ingredients for this recipe. I'm not sure what you're eating.</p>
+    <% end %>
+  </div>
+  <div class="col">
+    <h3>Instructions</h3>
+    <p><%= @recipe.instructions %></p>
+  </div>
+</div>
+<hr>
+<div class="row">
+  <div class="col-md-4">
+    <ul>
+      <li><%= link_to "Edit Recipe", edit_recipe_path(@recipe) %></li>
+      <li><%= link_to "Delete Recipe", recipe_path(@recipe),:data => {:confirm => "Are you sure?", :method => "delete"} %></li>
+      <li><%= link_to "Return to recipes", recipes_path(@recipe) %></li>
+    </ul>
+  </div>
+</div>

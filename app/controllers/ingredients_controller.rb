@@ -4,6 +4,11 @@ class IngredientsController < ApplicationController
     render :new
   end
 
+  def index
+    @ingredients = Ingredient.all
+    render :index
+  end
+
   def create
     @ingredient = Ingredient.new(ingredient_params)
     if @ingredient.save
@@ -25,7 +30,7 @@ class IngredientsController < ApplicationController
   end
 
   def update
-    @ingredient = Ingredient.find(params[:id])
+      @ingredient = Ingredient.find(params[:id])
     if @ingredient.update(ingredient_params)
       redirect_to ingredient_path(@ingredient.ingredient)
     else
@@ -36,7 +41,7 @@ class IngredientsController < ApplicationController
   def destroy
     @ingredient = Ingredient.find(params[:id])
     @ingredient.destroy
-    redirect_to ingredient_path(@ingredient.ingredient)
+    redirect_to ingredients_path
   end
 
   private
