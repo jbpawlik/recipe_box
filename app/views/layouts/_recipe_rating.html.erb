@@ -1,0 +1,13 @@
+<%= render "layouts/errors", :object => @recipe %>
+
+Rating: 
+<span style="color:#FFE356">
+  <% @recipe.rating.to_i.times do %>
+      ★
+    <%end%>
+  </span>
+  <span style="color:#E1FAFD">
+    <%(5-@recipe.rating.to_i).times do %>
+      ★
+    <%end%>
+</span>

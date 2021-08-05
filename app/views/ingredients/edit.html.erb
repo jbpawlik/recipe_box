@@ -2,8 +2,6 @@
 
 <%= form_for [@recipe, @ingredient] do |f| %>
   <%= f.label :name %>
-  <%= f.text_field :name %>
-  <%= f.label :quantity %>
-  <%= f.text_area :quantity%>
-  <p><%= f.submit %></p>
+  <%= f.text_field :name, class: "form-control" %>
+  <p><%= f.submit class: "btn btn-primary mt-3"%></p>
 <% end %>

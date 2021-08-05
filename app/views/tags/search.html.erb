@@ -1,0 +1,10 @@
+<% if @tags.any? %>
+
+<% @tags.each do |tag| %>
+  <ul>
+    <% if tag.name === params[:search] %>
+      <li><%= tag.name %></li>
+    <%end%>
+  </ul>
+  <% end %>
+<% end %>

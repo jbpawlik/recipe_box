@@ -1,12 +1,22 @@
 class IngredientsController < ApplicationController
+  
+  
+  def index
+    @ingredients = Ingredient.all
+    @recipes = Recipe.all
+    render :index
+  end
+
+  def search
+    @recipes = Recipe.all
+    @ingredients = Ingredient.all
+    @ingredient_search = Ingredient.search(:search)
+    render :search
+  end
+
   def new
     @ingredient = Ingredient.new
     render :new
-  end
-
-  def index
-    @ingredients = Ingredient.all
-    render :index
   end
 
   def create
@@ -21,6 +31,8 @@ class IngredientsController < ApplicationController
 
   def show
     @ingredient = Ingredient.find(params[:id])
+    @recipes = Recipe.all
+    # @ingredient.recipes << recipe
     render :show
   end
 
@@ -32,7 +44,7 @@ class IngredientsController < ApplicationController
   def update
       @ingredient = Ingredient.find(params[:id])
     if @ingredient.update(ingredient_params)
-      redirect_to ingredient_path(@ingredient.ingredient)
+      redirect_to ingredients_path
     else
         render :edit
     end
@@ -46,7 +58,7 @@ class IngredientsController < ApplicationController
 
   private
     def ingredient_params
-      params.require(:ingredient).permit(:name)
+      params.require(:ingredient).permit(:name, :search)
     end
 
 end

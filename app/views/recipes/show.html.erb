@@ -9,11 +9,22 @@
     <%(5-@recipe.rating.to_i).times do %>
       ★
     <%end%>
-</span>
-  </h3>
+</span></h3>
 <div class="row">
-  <div class="col-md-4">
-    <h3>Ingredients</h3>
+  <div class="col-md-3 sidebar">
+  <div class="inner-sidebar">
+    <h3>Tags:</h3>
+    <% if @recipe.tags.any? %>
+      <ul>
+        <% @recipe.tags.each do |tag| %>
+          <li><%= link_to tag.name, tag_path(tag) %></li>
+        <% end %>
+      </ul>
+    <% else %>
+      <p>There are no tags for this recipe. I'm not sure what you're eating.</p>
+    <% end %>
+
+    <h3>Ingredients:</h3>
     <% if @recipe.ingredients.any? %>
       <ul>
         <% @recipe.ingredients.each do |ingredient| %>
@@ -23,6 +34,7 @@
     <% else %>
       <p>There are no ingredients for this recipe. I'm not sure what you're eating.</p>
     <% end %>
+  </div>
   </div>
   <div class="col">
     <h3>Instructions</h3>

@@ -1,0 +1,10 @@
+<% if @ingredients.any? %>
+
+<% @ingredients.each do |ingredient| %>
+  <ul>
+    <% if ingredient.name === params[:search] %>
+      <li><%= ingredient.name %></li>
+    <%end%>
+  </ul>
+  <% end %>
+<% end %>
