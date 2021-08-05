@@ -10,6 +10,8 @@ class IngredientsController < ApplicationController
   def search
     @recipes = Recipe.all
     @ingredients = Ingredient.all
+    @ingredient = Ingredient.find_by(params[:name])
+    @recipe = Recipe.find_by(params[:name])
     @ingredient_search = Ingredient.search(:search)
     render :search
   end

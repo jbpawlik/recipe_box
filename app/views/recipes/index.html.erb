@@ -65,6 +65,12 @@
         <p>There are no recipes yet.</p>
       <% end %>
       <p><%= link_to "Create new recipe", new_recipe_path, class: "btn btn-primary" %></p>
+      <form>
+          <div class = "form-group">
+            <input name="highest_rating" type="hidden">
+            <button type="submit" class= "btn btn-primary" >Sort Recipes</button>
+          </div>
+        </form>
     </div>
   </div>
 </div>

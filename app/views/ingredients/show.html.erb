@@ -1,4 +1,12 @@
 <h1>Ingredient: <%= @ingredient.name %></h1>
-
+<h2>Recipes with <%= @ingredient.name %></h2>
+<ul>
+  <% @ingredient.recipe_ids.each do |recipe_id| %>
+    <li><%=link_to Recipe.find(recipe_id).name, recipe_path(recipe_id) %></li>
+    <%end%>
+</ul>
+<hr>
 <p><%= link_to "Edit ingredient", edit_ingredient_path(@ingredient) %></p>
 <p><%= link_to "Delete ingredient", ingredient_path(@ingredient),:data => {:confirm => "Are you sure?", :method => "delete"} %></p>
+
+<%# SELECT ingredient_id FROM ingredient_recipes GROUP BY ingredient_id ORDER BY COUNT(id) DESC;

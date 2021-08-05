@@ -4,8 +4,11 @@ class RecipesController < ApplicationController
     @tags = Tag.all
     @ingredients = Ingredient.all
     @searched_ingredient = Ingredient.search(params[:search])
-
+    if params[:highest_rating]
+      @recipes = Recipe.highest_rating
+    else
     @recipes = Recipe.all
+    end
     render :index
   end
 
@@ -57,7 +60,20 @@ class RecipesController < ApplicationController
 
   def update
     @recipe= Recipe.find(params[:id])
+    tag_ids = params.fetch("recipe").fetch("tag_ids")
+    ingredient_ids = params.fetch("recipe").fetch("ingredient_ids")
+    tag_ids.each do |tag_id| 
+      if tag_id != ""
+        @recipe.tags << Tag.find(tag_id)
+      end
+    end
+    ingredient_ids.each do |ingredient_id| 
+      if ingredient_id != ""
+        @recipe.ingredients << Ingredient.find(ingredient_id)
+      end
+    end
     if @recipe.update(recipe_params)
+      flash[:notice] = "Recipe successfully updated!"
       redirect_to recipes_path
     else
       render :edit
@@ -72,7 +88,7 @@ class RecipesController < ApplicationController
 
   private
   def recipe_params
-    params.require(:recipe).permit(:name, :rating, :instructions, :tag_ids, :ingredient_ids)
+    params.require(:recipe).permit(:name, :rating, :instructions)
   end
 
 end
