@@ -1,14 +1,5 @@
 class IngredientsController < ApplicationController
-<<<<<<< HEAD
-  def new
-    @ingredient = Ingredient.create
-    render :new
-  end
 
-=======
-  
-  
->>>>>>> cc55938dbc1044cfe9e50663178c825803b8a733
   def index
     @ingredients = Ingredient.all
     @recipes = Recipe.all
@@ -42,7 +33,6 @@ class IngredientsController < ApplicationController
   def show
     @ingredient = Ingredient.find(params[:id])
     @recipes = Recipe.all
-    # @ingredient.recipes << recipe
     render :show
   end
 

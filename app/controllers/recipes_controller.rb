@@ -23,12 +23,12 @@ class RecipesController < ApplicationController
     @recipe = Recipe.new(recipe_params)
     tag_ids = params.fetch("recipe").fetch("tag_ids")
     ingredient_ids = params.fetch("recipe").fetch("ingredient_ids")
-    tag_ids.each do |tag_id| 
+    tag_ids.each do |tag_id|
       if tag_id != ""
         @recipe.tags << Tag.find(tag_id)
       end
     end
-    ingredient_ids.each do |ingredient_id| 
+    ingredient_ids.each do |ingredient_id|
       if ingredient_id != ""
         @recipe.ingredients << Ingredient.find(ingredient_id)
       end
@@ -39,8 +39,6 @@ class RecipesController < ApplicationController
     else
       render :new
     end
-    
-
   end
 
   def edit
@@ -50,11 +48,7 @@ class RecipesController < ApplicationController
 
   def show
     @recipe = Recipe.find(params[:id])
-    @tags = @recipe.tags 
-    # tag = Tag.new(params[:tag_name])
-    # @tag = Tag.find(params[:id])
-    # @recipe.tags << tag
-    # @ingredients = @recipe.ingredients
+    @tags = @recipe.tags
     render :show
   end
 
@@ -62,7 +56,7 @@ class RecipesController < ApplicationController
     @recipe= Recipe.find(params[:id])
     tag_ids = params.fetch("recipe").fetch("tag_ids")
     ingredient_ids = params.fetch("recipe").fetch("ingredient_ids")
-    tag_ids.each do |tag_id| 
+    tag_ids.each do |tag_id|
       if tag_id != ""
         @recipe.tags << Tag.find(tag_id)
       end
