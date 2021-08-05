@@ -3,10 +3,17 @@ class TagsController < ApplicationController
   def index
     @tags = Tag.all
     @recipes = Recipe.all
-    @ingredients = Ingredient.all
-    @recipe = Recipe.create
-    @ingredients = Ingredient.create
+    # @ingredients = Ingredient.all
+    # @recipe = Recipe.create
+    # @ingredients = Ingredient.create
     render :index
+  end
+
+  def search
+    @recipes = Recipe.all
+    @tags = Tag.all
+    @tag_search = Tag.search(:search)
+    render :search
   end
 
   def new
